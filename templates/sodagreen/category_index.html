@@ -1,0 +1,42 @@
+{%extends "sodagreen/base.html"%}
+
+{% block mainbody %}
+<ul>
+    {% for category in object_list %}
+        <li>
+            <h2>{{category.title}}</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope='column'>Name</th>
+                        <th scope='column'>Total </th>
+                        <th scope='column'>Spent</th>
+                        <th scope="column">Left</th>
+                    </tr>
+
+                </thead> 
+                <tbody>
+                    {%for budget in category.budget_set.all%}
+                        
+                        <tr class="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
+                            <td>{{budget.title}}</td>
+                            <td>{{budget.amount}}</td>
+                            <td>{{budget.get_spent}}</td>
+                            <td>{{budget.get_left}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td>{{category.get_total}}</td>
+                        <td>{{category.get_spent}}</td>
+                        <td>{{category.get_left}}</td>
+
+                    </tr>
+                </tfoot>
+            </table>
+        </li>
+    {% endfor %}
+</ul>
+{%endblock%}

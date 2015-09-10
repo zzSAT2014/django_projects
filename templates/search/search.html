@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search</title>
+</head>
+<body>
+
+
+    <form method='get' action='/search/'>
+        <p> 
+            <label for='query'>Search</label>
+            <input type="text" id='query' name='q' value={{query}}>
+            <input type='submit'>
+        </p>
+    </form>
+
+    {%if query%}
+        {%if result %}
+            <h1> You Searched For "{{query}}", here results are listed below</h1>
+
+            <ul>
+
+                {%for page in result%}
+                    <li><a href="{{page.get_absolute_url}}"> {{page.title}}{{page.get_absolute_url}}</a></li>
+                {% endfor %}
+            </ul>
+        {%if keyresult %}
+
+        <h1> Here are keyword results </h1> 
+            {% for page in keyresult %}
+                 <ul>
+
+                {%for page in result%}
+                    <li><a href="{{page.get_absolute_url}}"> {{page.title}}</a></li>
+                {% endfor %}
+            </ul>
+            {%endfor %}
+        {%endif%}
+        {% else %}
+            <p> Sorry, No Matching Results. Try Harder!</p>
+        {% endif %}
+
+    {%else%}
+        <p> Type Search Text into Box and Press Submit </p>
+    {%endif%}
+
+</body>
+</html>

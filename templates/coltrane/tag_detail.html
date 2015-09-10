@@ -1,0 +1,40 @@
+{% extends "coltrane/base.html" %}
+
+{%block content%}
+    <h2>
+        All Entries Associated With {{tag_name}}
+    </h2>
+    <h3>Entries</h3>
+
+    <ul>
+        {%for entry in entry_set%}
+            <li>
+                <h3>{{entry.title}}</h3>
+                <p>Published on {{entry.pub_date|date:'F j,Y'}}</p>
+                <p>
+                    {%if entry.excerpt%}
+                        {{entry.excerpt|safe}}
+                    {%else%}
+                        {{entry.body|truncatewords_html:'50'|safe}}
+                    {%endif%}
+                </p>
+                <p>
+                    <a href="{{entry.get_absolute_url}}"> Read More</a>
+                </p>
+            </li>
+        {%endfor%}
+    </ul>
+    <h3>Links</h3>
+    <ul>
+        {%for link in link_set%}
+        <li><h3>
+            <a href="{{link.url}}">{{link.title}} on {{link.pub_date|date:'F j,Y'}}</a>
+        </h3>
+        <p>
+            {{link.description_html|safe}}
+        </p>
+        </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

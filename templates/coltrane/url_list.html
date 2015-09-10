@@ -1,0 +1,15 @@
+{% extends "coltrane/base.html" %}
+{% block mytitle %}
+    |Index
+{% endblock %}
+
+{%block content %}
+    {% if special_title %}
+    <h1>{{special_title}}</h1>
+    {% endif %}
+    <ul>
+        {% for obj in object_list %}
+        <li><a href="{{obj.get_absolute_url}}">{{obj.title}}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "coltrane/entry_base.html" %}
+
+{% block mytitle %}
+
+    {{block.super}} | Index Page
+{% endblock %}
+{% block content%}
+    <h1>Entry Index
+    {% if special_title %}
+        :{{special_title}}
+    {% endif %}
+    </h1>
+    <ul>
+
+
+        {%for entry in object_list%}
+            <li>
+                <h2>{{entry.title}}</h2>
+                <p>Published on {{entry.pub_date|date:'F j,Y'}}</p>
+                <p>
+                    {%if entry.excerpt%}
+                        {{entry.excerpt|safe}}
+                    {%else%}
+                        {{entry.body|truncatewords_html:'50'|safe}}
+                    {%endif%}
+                </p>
+                <p>
+                    <a href="{{entry.get_absolute_url}}"> Read More</a>
+                </p>
+            </li>
+        {%endfor%}
+    </ul>
+{% endblock %}
+
+{% block whatis %}
+{% if special_title %}
+    <p>This is a list of entries published on {{special_title}}</p>
+{% else %}
+    <p>This is a list of all entries published </p>
+{% endif %}
+
+{% endblock %}

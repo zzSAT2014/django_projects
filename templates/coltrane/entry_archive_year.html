@@ -1,0 +1,21 @@
+{% extends "coltrane/entry_base.html" %}
+{% block mytitle%} Entry Archive {% endblock%}
+
+{%block content %}
+    <h1>Archive: All Articles for {{myyear}}</h1>
+    {% for m in month_lis %}
+        <p>
+            <h3> {{m.0}} </h3>
+            <ul>
+                {% for obj in m.1%}
+                    <li><a href="{{obj.get_absolute_url}}">
+                        {{obj.title}} on {{obj.pub_date|date:'F j,Y'}} by {{obj.author}}</a></li>
+                {% endfor %}
+            </ul>
+        </p>
+    {% endfor %}
+{%endblock%}
+
+{% block whatis %}
+<p>This is a list of entries published on {{year}} grouped by month.</p>
+{% endblock %}

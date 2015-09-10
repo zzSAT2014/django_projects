@@ -1,0 +1,52 @@
+
+<html>
+{%load static%}
+<head>
+    <title>{{flatpage.title}}</title>
+</head>
+<body>
+    <h1>{{flatpage.title}}</h1>
+    <hr>
+    <p>
+        {{flatpage.content}}
+    </p>
+    <hr>
+      <p><input type='text' id='clicked' value=0 onfocus="this.blur()"></p>
+    <hr>
+    <center>
+        
+         <img id='porn_img' src="{% static 'img0.jpg'%}" alt="oops"> 
+        
+    </center>
+<script type="text/javascript"> 
+    // alert('fuck off' + window.location)
+    var clicked = 0;
+
+    function custom_onclick(){
+        clicked += 1;
+     document.getElementById('clicked').value = clicked;
+    }
+    document.onclick = custom_onclick;
+    var curimage = 0
+    function img_onclick(){
+        clicked += 1;
+        document.getElementById('clicked').value = clicked;
+        curimage = (curimage+1)%10;
+        msg = "\\static\\" +'img' + curimage + '.jpg'
+        document.getElementById('porn_img').src = msg
+
+    }
+    document.getElementById('porn_img').onclick = img_onclick;
+    // alert(""+document.getElementById('porn_img'))
+</script>
+  <hr>
+
+<form method='get' action='/search/'>
+    <p> <label for='query'>Search</label>
+    
+    <input type="text" id='query' name='q'>
+    <input type='submit'>
+</p>
+</form>
+</body>
+</html>

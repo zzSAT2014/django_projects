@@ -1,0 +1,12 @@
+{% extends "coltrane/base.html" %}
+
+{%block mytitle %}Tag Index{% endblock %}
+
+{%block content %}
+    <h1>All Tags Used</h1>
+    <ul>
+        {%for tag in object_list %}
+        <li><a href="{%url 'coltrane_tag:detail' tag.name%}">{{tag.name}}</a></li>
+        {% endfor %}
+    </ul>
+{%endblock %}

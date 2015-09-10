@@ -1,0 +1,17 @@
+{%extends "coltrane/base.html"%}
+
+{%block content %}
+    <h1>Link Index</h1>
+    <ul>
+    
+        {%for link in object_list%}
+        <li><h2>
+            <a href="{{link.get_absolute_url}}">{{link.title}} on {{link.pub_date|date:'F j,Y'}}</a>
+        </h2>
+        <p>
+            {{link.description_html|safe}}
+        </p>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

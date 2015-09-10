@@ -1,0 +1,31 @@
+{%extends "coltrane/base.html"%}
+
+{%block content %}
+
+    <h1>{{link.title}}</h1>
+    <p> published on {{link.pub_date|date:'F j,Y'}}  </p>
+    <p>
+        {% if not tags %}
+            This entry is not Taged
+        {% else %}
+            Belonging to tag:
+            {% for tag in tags %}
+                {%ifequal forloop.revcounter 1%}
+                    <a href="{%url 'coltrane_tag:detail' tag%}">{{tag}}</a>
+                {% else %}
+                    <a href="{%url 'coltrane_tag:detail' tag%}">{{tag}}</a>,
+                {% endifequal %}
+            {% endfor %}
+        {% endif %}
+        
+    </p>
+    <br>
+    {{link.description_html|safe}}
+    <p><a href="{{link.url}}">Go To Website</a></p>
+
+
+{% endblock %}
+
+{% block whatis %}
+    <p>This is an link posted to my blog on {{object.pub_date|date:'F j, Y'}}</p>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "coltrane/entry_base.html" %}
+{# <!DOCTYPE html>
+<html>
+<head>
+    <title>object Detail</title>
+</head>
+<body>
+    <h1>{{object.title}}</h1> #}
+{% block mytitle %} {{block.super}} | {{object.title}} {% endblock %}
+
+{% block content %}
+    <h1>{{object.title}}</h1>
+    <br>
+    <p class="category">
+        {% if not object.categories.count %}
+            This entry is not categorized 
+        {% else %}
+            Belonging to categor{{object.categories.count|pluralize:"y,ies"}}:
+            {% for category in object.categories.all%}
+                {%ifequal forloop.revcounter 1%}
+                    <a href="{{category.get_absolute_url}}">{{category.title}}</a>
+                {% else %}
+                    <a href="{{category.get_absolute_url}}">{{category.title}}</a>,
+                {% endifequal %}
+            {% endfor %}
+        {% endif %}
+    
+        <br>
+        {% if not tags %}
+            This entry is not Taged
+        {% else %}
+            Belonging to tag:
+            {% for tag in tags %}
+                {%ifequal forloop.revcounter 1%}
+                    <a href="{%url 'coltrane_tag:detail' tag%}">{{tag}}</a>
+                {% else %}
+                    <a href="{%url 'coltrane_tag:detail' tag%}">{{tag}}</a>,
+                {% endifequal %}
+            {% endfor %}
+        {% endif %}
+        
+    </p>
+ 
+    {% if object.excerpt %}
+        <hr>
+    {% endif %}
+    <p>{{object.excerpt|safe}}</p>
+    <hr>
+    <p>{{object.body|safe}}</p>
+    <p class="credits"> By {{object.author}} on {{object.pub_date|date:'F j, Y'}}</p>
+    {%load comments%}
+
+    <h2>Previous Comments</h2>
+    {%render_comment_list for object%}
+
+    <h2>Your Comments</h2>
+    {%render_comment_form for object%}
+{% endblock %}
+
+{% block whatis %}
+    <p>This is an entry posted to my blog on {{object.pub_date|date:'F j, Y'}}</p>
+{% endblock %}

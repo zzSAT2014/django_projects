@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Try Form</title>
+</head>
+<body>
+
+    <form action='{% url "tryresponse" %}' method='post'>
+    {% csrf_token %}
+
+        <p>
+            1 <input type="checkbox" name='checkbox' value='1' checked='checked'>
+            2 <input type="checkbox" name='checkbox' value='2' checked='checked'>
+        </p>
+        <p><input type='password' name='password'></p>
+        <p> 
+            <select name='tryslect'>
+                <option value='fuck'> fuck </option>
+                <option value='bitch'> bitch </option>
+            </select>
+        </p>
+        <p>
+            a<input type='radio' name='tryradio' value='1' checked='checked'>
+            b<input type='radio' name='tryradio' value='2' checked='checked'>
+            c<input type='radio' name='tryradio' value='3' checked='checked'>
+        </p>
+        <p>
+            <textarea name='textarea' required='required'></textarea>
+        </p>
+        <label for='myfile'> testing label</label>
+
+        <p><label  for='puddate'>Publication Date</label>
+        <input type='date' id='pubdate' name='pubdate'/></p>
+        <p> <input type='file' name='myfile'/> </p>
+        
+        <p><label for='email'> Email</label>
+        <input type='email' name='myemial' id='myemail'/></p>
+        <p><input type='url' name='mysite' id='mysite'/></p>
+        <button> bitch </button>
+    </form>
+</body>
+</html>
