@@ -3,6 +3,12 @@ from django.utils import timezone
 from tagging.fields import TagField
 
 
+def roundup(fun):
+    def inner(arg):
+        return round(fun(arg), 1)
+    return inner
+
+
 class Category(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
@@ -17,12 +23,15 @@ class Category(models.Model):
     def __unicode__(self):
         return self.title
 
+    @roundup
     def get_total(self):
         return sum([budget.amount for budget in self.budget_set.all()])
 
+    @roundup
     def get_spent(self):
         return sum([budget.get_spent() for budget in self.budget_set.all()])
 
+    @roundup
     def get_left(self):
         return sum([budget.get_left() for budget in self.budget_set.all()])
 
@@ -47,9 +56,11 @@ class Budget(models.Model):
     def get_absolute_url(self):
         return ('sodagreen:budget', (), {'title': self.title})
 
+    @roundup
     def get_spent(self):
         return sum([entry.amount for entry in self.entry_set.all()])
 
+    @roundup
     def get_left(self):
         return self.amount - self.get_spent()
 

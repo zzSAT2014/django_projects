@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='entry',
             name='budget',
-            field=models.ForeignKey(default='testing', to='sodagreen.Budget'),
+            field=models.ForeignKey(default='1', to='sodagreen.Budget'),
             preserve_default=False,
         ),
     ]
