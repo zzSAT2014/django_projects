@@ -35,9 +35,9 @@
                 border-bottom: 1px solid #f1f8fe; 
                 border-right: 1px solid #749abe;
                 border-top: 2px solid #547ca0;
-                text-align: left;
+                text-align: right;
                 text-shadow: -1px -1px 1px #666666;
-                letter-spacing: 0.15em;
+                /*letter-spacing: 0.15em;*/
             }
             thead th {
                 color: #fff;
@@ -50,16 +50,22 @@
                 letter-spacing: 0.15em;}
             td {
                 text-shadow: 1px 1px 1px #ffffff;
-                text-align: center !important;
+                text-align: right ;
                 font-weight: bold;
+                padding-left: 0px;
             }
 
             tr.even td{
                 background-color: #e8eff5;}
+            tr td:first-child{
+                background-color: #D3E1E3;
+                text-align: center;
+            }
             thead th:first-child {
                 -webkit-border-top-left-radius: 12px;
                 -moz-border-radius-topleft: 12px;
-                border-top-left-radius: 12px;}
+                border-top-left-radius: 12px;
+                width: 10em;}
             thead th:last-child {
                 -webkit-border-top-right-radius: 12px;
                 -moz-border-radius-topright: 12px;
@@ -67,7 +73,8 @@
             tfoot td:first-child {
                 -webkit-border-bottom-left-radius: 12px;
                 -moz-border-radius-topleft: 12px;
-                border-bottom-left-radius: 12px;}
+                border-bottom-left-radius: 12px;
+                background-color: #90b4d6;}
             tfoot td:last-child {
                 -webkit-border-bottom-right-radius: 12px;
                 -moz-border-radius-topright: 12px;
